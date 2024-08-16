@@ -1,70 +1,178 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Expense Tracker Application
 
-## Available Scripts
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Running the Project](#running-the-project)
+5. [Project Structure](#project-structure)
+6. [How the Project Works](#how-the-project-works)
+7. [API Endpoints](#api-endpoints)
+8. [Testing](#testing)
+9. [Contributing](#contributing)
+10. [License](#license)
 
-In the project directory, you can run:
+## Project Overview
+The Expense Tracker application is designed to help users manage and track their expenses efficiently. It consists of two main components:
+- **Backend API (Django):** Manages data processing, database operations, and provides RESTful API endpoints.
+- **Frontend (React):** Offers a user-friendly interface for tracking expenses, interacting with the backend, and visualizing data.
 
-### `npm start`
+## Prerequisites
+Before you begin, ensure you have the following installed:
+- Python 3.x
+- Node.js (version 18.x or higher)
+- npm (version 6.x or higher)
+- SQLite (default database for the Django backend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd expense-tracker
+   ```
 
-### `npm test`
+2. **Set Up the Backend:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - Navigate to the Django backend directory:
+     ```bash
+     cd django_expense_tracker
+     ```
 
-### `npm run build`
+   - Create a virtual environment and activate it:
+     ```bash
+     python -m venv venv
+     source venv/bin/activate  # On Windows: venv\Scripts\activate
+     ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Install the required Python dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - Run migrations to set up the database:
+     ```bash
+     python manage.py migrate
+     ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - (Optional) Create a superuser to access the Django admin panel:
+     ```bash
+     python manage.py createsuperuser
+     ```
 
-### `npm run eject`
+3. **Set Up the Frontend:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   - Navigate to the React frontend directory:
+     ```bash
+     cd ../expense-tracker
+     npm install
+     ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running the Project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Run the Backend:**
+   In the backend directory (`django_expense_tracker`), start the Django development server:
+   ```bash
+   python manage.py runserver
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Run the Frontend:**
+   In the frontend directory (`expense-tracker`), start the React development server:
+   ```bash
+   npm start
+   ```
+   
+   The React app will be available at [http://localhost:3000](http://localhost:3000), and the backend API will be accessible at [http://localhost:8000](http://localhost:8000).
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend (Django)
+```
+django_expense_tracker/
+│
+├── db.sqlite3
+├── manage.py
+├── django_expense_tracker/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── wsgi.py
+│
+└── transactions/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── migrations/
+    │   ├── __init__.py
+    │   └── 0001_initial.py
+    ├── models.py
+    ├── serializers.py
+    ├── tests.py
+    ├── urls.py
+    └── views.py
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Frontend (React)
+```
+expense-tracker/
+│
+├── node_modules/
+├── package.json
+├── package-lock.json
+├── public/
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+└── README.md
+```
 
-### Code Splitting
+## How the Project Works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend (Django)
+- The backend is a Django REST API that handles all CRUD operations for managing expenses. The `transactions` app manages the core business logic.
+- The API is built using Django REST Framework (DRF) for serialization and viewsets.
+- The `migrations` directory stores database migrations.
 
-### Analyzing the Bundle Size
+### Frontend (React)
+- The frontend is built using React and communicates with the backend through API requests. Axios is used for handling HTTP requests.
+- The React app is designed to be responsive and provides an intuitive user experience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API Endpoints
 
-### Making a Progressive Web App
+| Endpoint                      | Method | Description                                  |
+|-------------------------------|--------|----------------------------------------------|
+| `/api/transactions/`          | GET    | Fetch all transactions                       |
+| `/api/transactions/`          | POST   | Create a new transaction                     |
+| `/api/transactions/<id>/`     | PUT    | Update an existing transaction               |
+| `/api/transactions/<id>/`     | DELETE | Delete a transaction                         |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Authentication:** You can implement authentication (e.g., JWT) to secure these endpoints if needed.
 
-### Advanced Configuration
+## Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To run tests for the Django backend:
+```bash
+python manage.py test
+```
+Tests are defined in the `tests.py` file located in the `transactions` app directory.
 
-### Deployment
+## Contributing
+If you would like to contribute, feel free to open a pull request. Please follow the code style and guidelines specified in the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License.
