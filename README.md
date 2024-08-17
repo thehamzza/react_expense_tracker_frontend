@@ -3,13 +3,9 @@
 # Frontend
 ![Web App](https://github.com/thehamzza/react_expense_tracker_frontend/blob/main/react-frontend.png)
 
-Live backend API:
+Live backend API: https://django-expense-tracker-api.vercel.app/
 
-    URL: https://django-expense-tracker-api.vercel.app/
-
-Live Web App:
-    
-    URL: https://react-expense-tracker-frontend.vercel.app/
+Live Web App: https://react-expense-tracker-frontend.vercel.app/
 
 
 ## Table of Contents
