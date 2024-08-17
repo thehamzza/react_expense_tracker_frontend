@@ -1,7 +1,7 @@
 # Expense Tracker Application
 
 # Frontend
-![Web App](react frontend.png)
+![Web App](https://github.com/thehamzza/react_expense_tracker_frontend/blob/main/react-frontend.png)
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
