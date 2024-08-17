@@ -3,10 +3,9 @@
 # Frontend
 ![Web App](https://github.com/thehamzza/react_expense_tracker_frontend/blob/main/react-frontend.png)
 
-Live backend API: https://django-expense-tracker-api.vercel.app/
+Live backend API: [https://django-expense-tracker-api.vercel.app/](https://django-expense-tracker-api.vercel.app/)
 
-Live Web App: https://react-expense-tracker-frontend.vercel.app/
-
+Live Web App: [https://react-expense-tracker-frontend.vercel.app/](https://react-expense-tracker-frontend.vercel.app/)
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -188,7 +187,138 @@ expense-tracker/
 | `/api/transactions/<id>/`     | PUT    | Update an existing transaction               |
 | `/api/transactions/<id>/`     | DELETE | Delete a transaction                         |
 
-- **Authentication:** You can implement authentication (e.g., JWT) to secure these endpoints if needed.
+### Example API Testing Scenarios
+
+#### 1. **Fetch All Transactions**
+**Endpoint:** `GET /api/transactions/`
+
+**Request:**
+```bash
+curl -X GET https://django-expense-tracker-api.vercel.app/api/transactions/
+```
+
+**Sample Response:**
+```json
+[
+    {
+        "id": 1,
+        "type": "earning",
+        "title": "hello",
+        "amount": "12345.00",
+        "date": "2024-08-16",
+        "currency": "USD"
+    },
+    {
+        "id": 2,
+        "type": "expense",
+        "title": "postgres",
+        "amount": "1234.00",
+        "date": "2024-08-16",
+        "currency": "USD"
+    },
+    {
+        "id": 5,
+        "type": "earning",
+        "title": "hamza testing 3",
+        "amount": "123.00",
+        "date": "2024-08-31",
+        "currency": "USD"
+    }
+]
+```
+
+#### 2. **Create a New Transaction**
+**Endpoint:** `POST /api/transactions/`
+
+**Request:**
+```bash
+curl -X POST https://django-expense-tracker-api.vercel.app/api/transactions/ \
+-H "Content-Type: application/json" \
+-d '{
+  "type": "expense",
+  "title": "Utility Bill",
+  "amount": "200.00",
+  "date": "2024-09-01",
+  "currency": "USD"
+}'
+```
+
+**Sample Response:**
+```json
+{
+    "id": 6,
+    "type": "expense",
+    "title": "Utility Bill",
+    "amount": "200.00",
+    "date": "2024-09-01",
+    "currency": "USD"
+}
+```
+
+#### 3. **Update an Existing Transaction**
+**Endpoint:** `PUT /api/transactions/<id>/`
+
+**Request:**
+```bash
+curl -X PUT https://django-expense-tracker-api.vercel.app/api/transactions/2/ \
+-H "Content-Type: application/json" \
+-d '{
+  "type": "expense",
+  "title": "Updated Postgres Test",
+  "amount": "1250.00",
+  "date": "2024-08-17",
+  "currency": "USD"
+}'
+```
+
+**Sample Response:**
+```json
+{
+    "id": 2,
+    "type": "expense",
+    "title": "Updated Postgres Test",
+    "amount": "1250.00",
+    "date": "2024-08-17",
+    "currency": "USD"
+}
+```
+
+#### 4. **Delete a Transaction**
+**Endpoint:** `DELETE /api/transactions/<id
+
+>/`
+
+**Request:**
+```bash
+curl -X DELETE https://django-expense-tracker-api.vercel.app/api/transactions/5/
+```
+
+**Sample Response:**
+```json
+{
+    "message": "Transaction deleted successfully."
+}
+```
+
+#### 5. **Fetch a Single Transaction**
+**Endpoint:** `GET /api/transactions/<id>/`
+
+**Request:**
+```bash
+curl -X GET https://django-expense-tracker-api.vercel.app/api/transactions/1/
+```
+
+**Sample Response:**
+```json
+{
+    "id": 1,
+    "type": "earning",
+    "title": "hello",
+    "amount": "12345.00",
+    "date": "2024-08-16",
+    "currency": "USD"
+}
+```
 
 ## Deployment
 
