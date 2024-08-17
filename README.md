@@ -1,6 +1,5 @@
-
 # Expense Tracker Application
-
+# Frontend
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Prerequisites](#prerequisites)
@@ -9,9 +8,11 @@
 5. [Project Structure](#project-structure)
 6. [How the Project Works](#how-the-project-works)
 7. [API Endpoints](#api-endpoints)
-8. [Testing](#testing)
-9. [Contributing](#contributing)
-10. [License](#license)
+8. [Deployment](#deployment)
+9. [Limitations and Future Improvements](#limitations-and-future-improvements)
+10. [Testing](#testing)
+11. [Contributing](#contributing)
+12. [License](#license)
 
 ## Project Overview
 The Expense Tracker application is designed to help users manage and track their expenses efficiently. It consists of two main components:
@@ -23,7 +24,7 @@ Before you begin, ensure you have the following installed:
 - Python 3.x
 - Node.js (version 18.x or higher)
 - npm (version 6.x or higher)
-- SQLite (default database for the Django backend)
+- PostgreSQL database (using Supabase)
 
 ## Installation
 
@@ -49,6 +50,24 @@ Before you begin, ensure you have the following installed:
    - Install the required Python dependencies:
      ```bash
      pip install -r requirements.txt
+     ```
+
+   - Set up PostgreSQL on Supabase:
+     - Sign up and create a project on [Supabase](https://supabase.com/).
+     - Get your database connection URL and credentials (host, port, database, user, password).
+
+   - Update your Django `settings.py` file with the PostgreSQL configuration:
+     ```python
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.postgresql',
+             'NAME': '<your-database-name>',
+             'USER': '<your-database-username>',
+             'PASSWORD': '<your-database-password>',
+             'HOST': '<your-database-host>',
+             'PORT': '<your-database-port>',
+         }
+     }
      ```
 
    - Run migrations to set up the database:
@@ -146,7 +165,7 @@ expense-tracker/
 ### Backend (Django)
 - The backend is a Django REST API that handles all CRUD operations for managing expenses. The `transactions` app manages the core business logic.
 - The API is built using Django REST Framework (DRF) for serialization and viewsets.
-- The `migrations` directory stores database migrations.
+- The PostgreSQL database is hosted on Supabase, ensuring robust data management and scalability.
 
 ### Frontend (React)
 - The frontend is built using React and communicates with the backend through API requests. Axios is used for handling HTTP requests.
@@ -162,6 +181,25 @@ expense-tracker/
 | `/api/transactions/<id>/`     | DELETE | Delete a transaction                         |
 
 - **Authentication:** You can implement authentication (e.g., JWT) to secure these endpoints if needed.
+
+## Deployment
+
+### Backend (Django)
+The backend API is deployed on Vercel:
+- URL: [https://django-expense-tracker-api.vercel.app/](https://django-expense-tracker-api.vercel.app/)
+
+### Frontend (React)
+The frontend is deployed on Vercel:
+- URL: [https://react-expense-tracker-frontend.vercel.app/](https://react-expense-tracker-frontend.vercel.app/)
+
+## Limitations and Future Improvements
+
+**Current Limitation:**
+- The app currently supports only a single user, meaning all expense data is shared and not isolated per user.
+
+**Future Improvements:**
+- Extend functionality to support multiple users with authentication, allowing each user to have their own separate database and transaction records.
+- Implement user sign-up, login, and secure data isolation between users.
 
 ## Testing
 
